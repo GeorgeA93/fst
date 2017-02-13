@@ -1,4 +1,6 @@
 import express from 'express';
+import sampleMiddleware from './middlewares/sample';
+import controllers from './controllers';
 
 const app = express();
 
@@ -7,17 +9,21 @@ app.use(express.static(__dirname + '/public')); // setup the public (assets) dir
 // setup the rendering engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug')
-// app.use(require('./middlewares/users')); // wire up any middleware we have
-// app.use(require('./controllers')) // wire up any controllers we have
 
+// attach our middleware
+app.use(sampleMiddleware);
+
+// add our controllers
+app.use(controllers);
+
+// the base route
 app.get('/', (req, res) => {
-    res.render('index', { title: 'FST', message: 'Hello World' });
+    res.render('index', { title: 'FST', message: 'Go Cardless Interview Boilerplate!' });
 });
 
-app.get('/api', (req, res) => {
-    res.render('index', { title: 'FST-API', message: 'API!' });
-});
-
-app.listen(3000, function () {
+// start listening on port 3000
+const server = app.listen(3000, function () {
     console.log('Listening on port 3000...')
 });
+
+export default server;
