@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import morgan from 'morgan';
 import sampleMiddleware from './middlewares/sample';
 import controllers from './controllers';
@@ -13,6 +14,7 @@ function setupServer() {
     app.set('view engine', 'pug');
 
     // attach third party middleware
+    app.use(helmet());
     app.use(morgan('tiny'));
 
     // attach our middleware
@@ -20,11 +22,6 @@ function setupServer() {
 
     // add our controllers
     app.use(controllers);
-
-    // the base route
-    app.get('/', (req, res) => {
-        res.render('index', { title: 'FST', message: 'Go Cardless Interview Boilerplate!' });
-    });
 
     // start listening on port 3000
     return app.listen(3000, () => {
