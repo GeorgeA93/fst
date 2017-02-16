@@ -9,7 +9,7 @@
     "serve": "node dist/app.js",
     "prebuild": "npm run test && rimraf dist",
     "build": "babel src -d dist",
-    "prerest": "npm run lint",
+    "pretest": "npm run lint",
     "test": "babel-node ./spec/run.js",
     "lint": "eslint ./src/**"
   },
