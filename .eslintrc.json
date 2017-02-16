@@ -1,4 +1,8 @@
 {
+    "env": {
+        "node": true,
+        "jasmine": true
+    },
     "extends": "airbnb-base",
     "plugins": [
         "import"

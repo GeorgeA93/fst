@@ -1,9 +1,9 @@
 export function finishSuperTest(done) {
-    return function (err) {
+    return (err) => {
         if (err) {
-            done.fail(err)
+            done.fail(err);
         } else {
-            done()
+            done();
         }
-    }
+    };
 }
