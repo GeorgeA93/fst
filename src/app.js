@@ -1,29 +1,37 @@
 import express from 'express';
+import morgan from 'morgan';
 import sampleMiddleware from './middlewares/sample';
 import controllers from './controllers';
 
-const app = express();
+function setupServer() {
+    const app = express();
 
-app.use(express.static(`${__dirname}/public`)); // setup the public (assets) directory
+    app.use(express.static(`${__dirname}/public`)); // setup the public (assets) directory
 
-// setup the rendering engine
-app.set('views', `${__dirname}/views`);
-app.set('view engine', 'pug');
+    // setup the rendering engine
+    app.set('views', `${__dirname}/views`);
+    app.set('view engine', 'pug');
 
-// attach our middleware
-app.use(sampleMiddleware);
+    // attach third party middleware
+    app.use(morgan('tiny'));
 
-// add our controllers
-app.use(controllers);
+    // attach our middleware
+    app.use(sampleMiddleware);
 
-// the base route
-app.get('/', (req, res) => {
-    res.render('index', { title: 'FST', message: 'Go Cardless Interview Boilerplate!' });
-});
+    // add our controllers
+    app.use(controllers);
 
-// start listening on port 3000
-const server = app.listen(3000, () => {
-    console.log('Listening on port 3000...');
-});
+    // the base route
+    app.get('/', (req, res) => {
+        res.render('index', { title: 'FST', message: 'Go Cardless Interview Boilerplate!' });
+    });
+
+    // start listening on port 3000
+    return app.listen(3000, () => {
+        console.log('Listening on port 3000...');
+    });
+}
+
+const server = setupServer();
 
 export default server;
