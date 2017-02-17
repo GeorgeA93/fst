@@ -1,3 +1,3 @@
 # fst
 
-A fast starting point for ExpressJS applications.
+A fast starting point for Express applications.
