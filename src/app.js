@@ -2,6 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import sampleMiddleware from './middlewares/sample';
 import controllers from './controllers';
 import environment from './environment';
@@ -16,9 +17,10 @@ function setupServer() {
     app.set('view engine', 'pug');
 
     // attach third party middleware
-    app.use(helmet());
-    app.use(morgan('tiny'));
-    app.use(cors(environment.corsOptions));
+    app.use(helmet()); // add some additional security
+    app.use(morgan('tiny')); // add some logging
+    app.use(cors(environment.corsOptions)); // configure cors
+    app.use(bodyParser.json()); // parse json bodys
 
     // attach our middleware
     app.use(sampleMiddleware);
