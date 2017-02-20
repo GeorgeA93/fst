@@ -4,9 +4,9 @@
   "main": "dist/app.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/app.js",
+    "start": "NODE_ENV=development nodemon src/app.js",
     "preserve": "npm run build",
-    "serve": "node dist/app.js",
+    "serve": "NODE_ENV=production node dist/app.js",
     "prebuild": "npm run test && rimraf dist",
     "build": "babel src -d dist",
     "pretest": "npm run lint",
@@ -25,6 +25,7 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "^4.14.1",
     "helmet": "^3.4.0",
     "lodash": "^4.17.4",

@@ -1,8 +1,10 @@
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import cors from 'cors';
 import sampleMiddleware from './middlewares/sample';
 import controllers from './controllers';
+import environment from './environment';
 
 function setupServer() {
     const app = express();
@@ -16,6 +18,7 @@ function setupServer() {
     // attach third party middleware
     app.use(helmet());
     app.use(morgan('tiny'));
+    app.use(cors(environment.corsOptions));
 
     // attach our middleware
     app.use(sampleMiddleware);
@@ -23,9 +26,9 @@ function setupServer() {
     // add our controllers
     app.use(controllers);
 
-    // start listening on port 3000
-    return app.listen(3000, () => {
-        console.log('Listening on port 3000...');
+    // start listening on the required port
+    return app.listen(environment.port, () => {
+        console.log(`Listening on port ${environment.port}...`);
     });
 }
 
