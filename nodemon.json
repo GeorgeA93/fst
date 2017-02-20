@@ -1,7 +1,7 @@
 {
     "verbose": true,
     "execMap": {
-        "js": " babel-node"
+        "js": "babel-node"
     },
     "ignore": [
         ".git",

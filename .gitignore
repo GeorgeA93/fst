@@ -37,5 +37,4 @@ jspm_packages
 dist
 .tmp
 .idea
-.vscode
 results/**/*.json

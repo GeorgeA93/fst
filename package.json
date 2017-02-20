@@ -4,7 +4,7 @@
   "main": "dist/app.js",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development nodemon src/app.js",
+    "start": "NODE_ENV=development nodemon --debug src/app.js",
     "preserve": "npm run build",
     "serve": "NODE_ENV=production node dist/app.js",
     "copypublic": "copyfiles -u 2 src/public/** dist/public",
