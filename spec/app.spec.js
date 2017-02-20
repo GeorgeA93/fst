@@ -8,7 +8,7 @@ describe('loading express', () => {
             .get('/')
             .expect(200, finishSuperTest(done));
     });
-    it('404s everything else', (done) => {
+    it('can 404', (done) => {
         request(server)
             .get('/foo/bar')
             .expect(404, finishSuperTest(done));
