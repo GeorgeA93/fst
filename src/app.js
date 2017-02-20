@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import sampleMiddleware from './middlewares/sample';
 import controllers from './controllers';
 import environment from './environment';
@@ -21,6 +22,7 @@ function setupServer() {
     app.use(morgan('tiny')); // add some logging
     app.use(cors(environment.corsOptions)); // configure cors
     app.use(bodyParser.json()); // parse json bodys
+    app.use(compression());
 
     // attach our middleware
     app.use(sampleMiddleware);
