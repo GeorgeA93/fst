@@ -2,11 +2,14 @@ html
   head
     title=title
     link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+    link(href='styles/main.css', rel='stylesheet')
   body
     div.container
-      div.jumbotron
-        h1=heading
-        p=message
+      div.jumbotron.header
+        h1=title
+        p=tagline
       div.row
         div.col-md-12
           a(href="interview") Interview Resource
+
+    script(src="scripts/bundle.js")
