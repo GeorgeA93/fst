@@ -8,6 +8,9 @@ import sampleMiddleware from './middlewares/sample';
 import controllers from './controllers';
 import environment from './environment';
 
+
+console.log('hello world');
+
 function setupServer() {
     const app = express();
 
